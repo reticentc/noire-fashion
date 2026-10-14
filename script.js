@@ -64,6 +64,52 @@ const products = [
         tag: "New",
         image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
     }
+        ,
+    {
+        id: 9,
+        name: "Street Edition",
+        category: "sneakers",
+        model: "sneaker-3.glb",
+        price: 92000,
+        tag: "New",
+        image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 10,
+        name: "Premium Runner",
+        category: "sneakers",
+        model: "sneaker-4.glb",
+        price: 105000,
+        tag: "Featured",
+        image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 11,
+        name: "Elegant Heels",
+        category: "heels",
+        model: "heels-1.glb",
+        price: 78000,
+        tag: "Elegant",
+        image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        id: 12,
+        name: "Evening Heels",
+        category: "heels",
+        model: "heels-2.glb",
+        price: 95000,
+        tag: "Limited edit",
+       image: "https://commons.wikimedia.org/wiki/Special:FilePath/High_heel_shoe.jpg?width=700"
+    },
+    {
+        id: 13,
+        name: "Classic Oxford",
+        category: "oxford",
+        model: "oxford-1.glb",
+        price: 115000,
+        tag: "Timeless",
+        image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=700&q=80"
+    }
 ];
 
 const productGrid = document.getElementById("productGrid");
@@ -89,7 +135,7 @@ function renderProducts() {
     );
 
     productGrid.innerHTML = visibleProducts.map(product => `
-        <article class="product-card">
+        <article class="product-card" ${product.model ? `data-model="${product.model}"` : ""}>
             <div class="product-image">
                 <img
                     src="${product.image}"
@@ -215,4 +261,22 @@ if (fashionModel && modelSelect) {
     fashionModel.cameraOrbit = "0deg 75deg auto";
     fashionModel.jumpCameraToGoal();
   });
-}
+}// CONNECT FOOTWEAR PRODUCTS TO THE 3D SHOWCASE
+productGrid.addEventListener("click", (event) => {
+  const card = event.target.closest(".product-card");
+
+  if (!card || !card.dataset.model) return;
+
+  const modelSelect = document.getElementById("model-select");
+  const showcase = document.getElementById("showcase-3d");
+
+  if (!modelSelect || !showcase) return;
+
+  modelSelect.value = card.dataset.model;
+  modelSelect.dispatchEvent(new Event("change"));
+
+  showcase.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
