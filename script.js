@@ -190,3 +190,29 @@ document.querySelectorAll(".category-card").forEach(card => {
 });
 
 renderProducts();
+// NOIRÉ 3D FOOTWEAR SELECTOR
+const fashionModel = document.getElementById("fashion-model");
+const modelSelect = document.getElementById("model-select");
+const modelTitle = document.getElementById("model-title");
+const modelDescription = document.getElementById("model-description");
+const exploreModel = document.getElementById("explore-model");
+
+if (fashionModel && modelSelect) {
+  modelSelect.addEventListener("change", () => {
+    const option = modelSelect.options[modelSelect.selectedIndex];
+
+    fashionModel.src = `assets/models/${option.value}`;
+    modelTitle.textContent = option.dataset.title;
+    modelDescription.textContent = option.dataset.description;
+  });
+
+  exploreModel?.addEventListener("click", () => {
+    document.getElementById("showcase-3d").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+    fashionModel.cameraOrbit = "0deg 75deg auto";
+    fashionModel.jumpCameraToGoal();
+  });
+}

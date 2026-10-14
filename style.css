@@ -803,3 +803,134 @@ h2 em {
         transition-duration: 0.01ms !important;
     }
 }
+/* NOIRÉ INTERACTIVE 3D SHOWCASE */
+.showcase-3d {
+  padding: 100px 7%;
+  background: #101010;
+  color: #f4efe6;
+  overflow: hidden;
+}
+
+.showcase-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.showcase-heading h2 {
+  font-size: clamp(2.3rem, 5vw, 4.5rem);
+  margin: 15px 0;
+  letter-spacing: -2px;
+}
+
+.showcase-heading h2 em {
+  color: #c8a96b;
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+
+.showcase-heading > p:last-child {
+  color: #aaa49a;
+}
+
+.showcase-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: center;
+  gap: 45px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.model-stage {
+  position: relative;
+  min-width: 0;
+  background: radial-gradient(ellipse, #343027 0%, #191817 55%, #101010 100%);
+  border: 1px solid #39352d;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#fashion-model {
+  display: block;
+  width: 100%;
+  height: 460px;
+  background: transparent;
+  --poster-color: transparent;
+}
+
+.model-hint {
+  display: block;
+  text-align: center;
+  padding: 0 10px 18px;
+  color: #c8a96b;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.model-details .eyebrow,
+.showcase-heading .eyebrow {
+  color: #c8a96b;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.model-details h3 {
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  margin: 16px 0;
+}
+
+.model-details > p:not(.eyebrow) {
+  color: #aaa49a;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.model-details label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+#model-select {
+  width: 100%;
+  padding: 15px;
+  background: #1d1c19;
+  color: #f4efe6;
+  border: 1px solid #655943;
+  border-radius: 5px;
+  margin-bottom: 16px;
+  font: inherit;
+}
+
+#explore-model {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #c8a96b;
+  background: #c8a96b;
+  color: #111;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background .3s, color .3s;
+}
+
+#explore-model:hover {
+  background: transparent;
+  color: #c8a96b;
+}
+
+@media (max-width: 760px) {
+  .showcase-3d {
+    padding: 65px 5%;
+  }
+
+  .showcase-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  #fashion-model {
+    height: 330px;
+  }
+}

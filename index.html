@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+      <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
 <body>
 
@@ -180,7 +181,50 @@
             <a href="#shop" class="primary-button">Find your next favourite ↗</a>
         </section>
     </main>
+  <section class="showcase-3d" id="showcase-3d">
+    <div class="showcase-heading">
+      <p class="eyebrow">THE NOIRÉ EXPERIENCE</p>
+      <h2>Luxury in <em>Every Angle.</em></h2>
+      <p>Explore the details. Discover your next statement piece.</p>
+    </div>
 
+    <div class="showcase-layout">
+      <div class="model-stage">
+        <model-viewer
+          id="fashion-model"
+          src="assets/models/sneaker-1.glb"
+          alt="Interactive 3D luxury footwear"
+          camera-controls
+          auto-rotate
+          rotation-per-second="20deg"
+          shadow-intensity="1"
+          environment-image="neutral"
+          exposure="1"
+          loading="eager">
+        </model-viewer>
+        <span class="model-hint">DRAG TO EXPLORE · 360° VIEW</span>
+      </div>
+
+      <div class="model-details">
+        <p class="eyebrow">THE 3D COLLECTION</p>
+        <h3 id="model-title">Signature Sneaker</h3>
+        <p id="model-description">Sport-inspired design. Elevated everyday style.</p>
+
+        <label for="model-select">CHOOSE YOUR STYLE</label>
+        <select id="model-select">
+          <option value="sneaker-1.glb" data-title="Signature Sneaker" data-description="Sport-inspired design. Elevated everyday style.">Signature Sneaker</option>
+          <option value="sneaker-2.glb" data-title="Urban Sneaker" data-description="Contemporary style with a bold attitude.">Urban Sneaker</option>
+          <option value="sneaker-3.glb" data-title="Street Edition" data-description="A fresh statement for everyday wear.">Street Edition</option>
+          <option value="sneaker-4.glb" data-title="Premium Runner" data-description="Modern form meets effortless style.">Premium Runner</option>
+          <option value="heels-1.glb" data-title="Elegant Heels" data-description="Refined footwear for standout moments.">Elegant Heels</option>
+          <option value="heels-2.glb" data-title="Evening Heels" data-description="A sophisticated finishing touch.">Evening Heels</option>
+          <option value="oxford-1.glb" data-title="Classic Oxford" data-description="Timeless formal footwear for the modern gentleman.">Classic Oxford</option>
+        </select>
+
+        <button type="button" id="explore-model">EXPLORE THIS DESIGN ↗</button>
+      </div>
+    </div>
+  </section>
     <footer class="footer">
         <a href="#home" class="logo">NOIRÉ<span>.</span></a>
         <p>Distinctive style. Your signature.</p>
