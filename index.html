@@ -12,8 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-      <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    
+<script src="products.js" defer></script>
+<script src="script.js" defer></script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
 </head>
 <body>
 
@@ -21,26 +24,36 @@
         DISCOVER YOUR NEXT STATEMENT PIECE
     </div>
 
-    <header class="navbar">
-        <a href="#" class="logo">NOIRÉ<span>.</span></a>
+    
+<header class="navbar">
+    <a href="#" class="logo">NOIRÉ<span>.</span></a>
 
-        <nav class="nav-links" id="navLinks">
-            <a href="#home">Home</a>
-            <a href="#shop">Shop</a>
-            <a href="#categories">Collections</a>
-            <a href="#about">Our Story</a>
-        </nav>
+<button
+    type="button"
+    id="menuButton"
+    class="menu-toggle"
+    aria-label="Toggle navigation"
+    aria-expanded="false"
+>
+    ☰
+</button>
 
-        <div class="nav-actions">
-            <button class="cart-button" id="cartButton" aria-label="Shopping cart">
-                Bag <span id="cartCount">0</span>
-            </button>
-            <button class="menu-button" id="menuButton"
-                aria-label="Toggle navigation" aria-expanded="false">
-                ☰
-            </button>
-        </div>
-    </header>
+    <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#categories">Collections</a>
+        <a href="#about">Our Story</a>
+
+<button type="button" id="cartButton" class="account-nav-button">
+    SHOPPING BAG (<span id="cartCount">0</span>)
+</button>
+
+        <button type="button" id="accountButton" class="account-nav-button">
+            MY ACCOUNT
+        </button>
+    </nav>
+</header>
+
 
     <main>
         <section class="hero" id="home">
@@ -233,5 +246,44 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<!-- NOIRE CUSTOMER ACCOUNT -->
+<div class="account-overlay" id="accountOverlay" aria-hidden="true">
+    <div class="account-dialog" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+        <button type="button" class="account-close" id="closeAccount" aria-label="Close">×</button>
+
+        <p class="eyebrow">NOIRÉ PRIVATE CLIENT</p>
+        <h2 id="accountTitle">Welcome Back.</h2>
+        <p class="account-subtitle" id="accountSubtitle">Sign in to your account.</p>
+
+        <div class="account-tabs">
+            <button type="button" class="account-tab active" id="loginTab">LOG IN</button>
+            <button type="button" class="account-tab" id="signupTab">CREATE ACCOUNT</button>
+        </div>
+
+        <form id="accountForm">
+            <label id="nameField" hidden>
+                Full name
+                <input type="text" id="accountName" autocomplete="name" placeholder="Your full name">
+            </label>
+
+            <label>
+                Email address
+                <input type="email" id="accountEmail" autocomplete="email" required placeholder="you@example.com">
+            </label>
+
+            <label>
+                Password
+                <input type="password" id="accountPassword" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters">
+            </label>
+
+            <p id="accountMessage" role="status" aria-live="polite"></p>
+
+            <button type="submit" id="accountSubmit">LOG IN →</button>
+        </form>
+    </div>
+</div>
+
+<script type="module" src="account.js"></script>
+<script type="module" src="cart-sync.js"></script>
 </body>
 </html>

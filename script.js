@@ -1,118 +1,8 @@
 
-const products = [
-    {
-        id: 1,
-        name: "Midnight Runner",
-        category: "sneakers",
-        price: 85000,
-        tag: "Bestseller",
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 2,
-        name: "Urban Classic",
-        category: "sneakers",
-        price: 72000,
-        tag: "New",
-        image: "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 3,
-        name: "Chronos Gold",
-        category: "watches",
-        price: 125000,
-        tag: "Editor's pick",
-        image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 4,
-        name: "Silver Hour",
-        category: "watches",
-        price: 98000,
-        tag: "Essential",
-        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 5,
-        name: "The Muse",
-        category: "handbags",
-        price: 110000,
-        tag: "New",
-        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 6,
-        name: "Evening Edit",
-        category: "handbags",
-        price: 145000,
-        tag: "Limited edit",
-        image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 7,
-        name: "Essential Overshirt",
-        category: "clothing",
-        price: 45000,
-        tag: "Essential",
-        image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 8,
-        name: "Everyday Luxe",
-        category: "clothing",
-        price: 38000,
-        tag: "New",
-        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
-    }
-        ,
-    {
-        id: 9,
-        name: "Street Edition",
-        category: "sneakers",
-        model: "sneaker-3.glb",
-        price: 92000,
-        tag: "New",
-        image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 10,
-        name: "Premium Runner",
-        category: "sneakers",
-        model: "sneaker-4.glb",
-        price: 105000,
-        tag: "Featured",
-        image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 11,
-        name: "Elegant Heels",
-        category: "heels",
-        model: "heels-1.glb",
-        price: 78000,
-        tag: "Elegant",
-        image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 12,
-        name: "Evening Heels",
-        category: "heels",
-        model: "heels-2.glb",
-        price: 95000,
-        tag: "Limited edit",
-       image: "https://commons.wikimedia.org/wiki/Special:FilePath/High_heel_shoe.jpg?width=700"
-    },
-    {
-        id: 13,
-        name: "Classic Oxford",
-        category: "oxford",
-        model: "oxford-1.glb",
-        price: 115000,
-        tag: "Timeless",
-        image: "assets/oxford-shoes.jpg"
 
-    }
-];
+const products = window.noireProducts;
 
+window.noireProducts = products;
 const productGrid = document.getElementById("productGrid");
 const filterBar = document.getElementById("filterBar");
 const cartCount = document.getElementById("cartCount");
@@ -120,6 +10,37 @@ const cartButton = document.getElementById("cartButton");
 const toast = document.getElementById("toast");
 const menuButton = document.getElementById("menuButton");
 const navLinks = document.getElementById("navLinks");
+const cartPanel = document.createElement("aside");
+cartPanel.id = "cartPanel";
+cartPanel.className = "cart-panel";
+cartPanel.setAttribute("aria-label", "Shopping bag");
+cartPanel.setAttribute("aria-hidden", "true");
+
+
+cartPanel.innerHTML = `
+    <div class="cart-header">
+        <div>
+            <p class="eyebrow">YOUR SELECTION</p>
+            <h2>Your Shopping Bag</h2>
+        </div>
+        <button type="button" id="closeCart" aria-label="Close shopping bag">×</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">₦0</strong>
+        </div>
+        <button type="button" id="checkoutButton">PROCEED TO CHECKOUT →</button>
+        <button type="button" id="continueShopping">CONTINUE SHOPPING</button>
+    </div>
+`;
+
+
+document.body.appendChild(cartPanel);
+
 
 let activeFilter = "all";
 const cart = [];
@@ -149,34 +70,120 @@ const orderedProducts = [...visibleProducts].sort(
     (a, b) => categoryOrder[a.category] - categoryOrder[b.category]
 );
 
-productGrid.innerHTML = orderedProducts.map(product => `
 
-        <article class="product-card" ${product.model ? `data-model="${product.model}"` : ""}>
-            <div class="product-image">
+productGrid.innerHTML = orderedProducts.map(product => `
+    <article
+        class="product-card"
+        ${product.model ? `data-model="${product.model}"` : ""}
+    >
+        <div class="product-image">
+            <a
+                href="product.html?id=${product.id}"
+                class="product-detail-link"
+                aria-label="View ${product.name} details"
+            >
                 <img
                     src="${product.image}"
                     alt="${product.name}"
                     loading="lazy"
                 >
-                <span class="product-tag">${product.tag}</span>
-                <button
-                    class="add-button"
-                    data-add="${product.id}"
-                    aria-label="Add ${product.name} to bag"
-                >+</button>
-            </div>
-            <div class="product-details">
-                <span class="product-category">${product.category}</span>
-                <h3>${product.name}</h3>
-                <p class="product-price">${money.format(product.price)}</p>
-            </div>
-        </article>
-    `).join("");
+            </a>
+
+            <span class="product-tag">${product.tag}</span>
+
+            <button
+                class="add-button"
+                data-add="${product.id}"
+                aria-label="Add ${product.name} to bag"
+            >+</button>
+        </div>
+
+        <div class="product-details">
+            <span class="product-category">${product.category}</span>
+            <h3>
+                <a href="product.html?id=${product.id}" class="product-detail-link">
+                    ${product.name}
+                </a>
+            </h3>
+            <p class="product-price">${money.format(product.price)}</p>
+        </div>
+    </article>
+`).join("");
+
 
     productGrid.querySelectorAll(".product-card").forEach((card, index) => {
         card.style.animationDelay = `${index * 70}ms`;
     });
 }
+
+function renderCart() {
+    const cartItems = document.getElementById("cartItems");
+
+    const totalQuantity = cart.reduce(
+        (sum, item) => sum + item.quantity, 0
+    );
+
+    const totalPrice = cart.reduce(
+        (sum, item) => sum + item.product.price * item.quantity, 0
+    );
+
+    cartCount.textContent = totalQuantity;
+    window.dispatchEvent(new Event("noire-cart-updated"));
+    document.getElementById("cartTotal").textContent =
+        money.format(totalPrice);
+
+    if (cart.length === 0) {
+        cartItems.innerHTML =
+            '<p class="cart-empty">Your bag is empty. Discover something you love.</p>';
+        return;
+    }
+
+    cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div>
+                <h3>${item.product.name}</h3>
+                <p>${money.format(item.product.price)}</p>
+                <div class="cart-item-actions">
+                    <button data-cart-action="decrease" data-id="${item.product.id}" aria-label="Decrease quantity">−</button>
+                    <span>${item.quantity}</span>
+                    <button data-cart-action="increase" data-id="${item.product.id}" aria-label="Increase quantity">+</button>
+                    <button class="remove-item" data-cart-action="remove" data-id="${item.product.id}">Remove</button>
+                </div>
+            </div>
+            <strong>${money.format(item.product.price * item.quantity)}</strong>
+        </div>
+    `).join("");
+}
+
+cartPanel.addEventListener("click", event => {
+    const button = event.target.closest("[data-cart-action]");
+    if (!button) return;
+
+    const id = Number(button.dataset.id);
+    const item = cart.find(entry => entry.product.id === id);
+    if (!item) return;
+
+    switch (button.dataset.cartAction) {
+        case "increase":
+            item.quantity++;
+            break;
+        case "decrease":
+            item.quantity--;
+            if (item.quantity <= 0) {
+                cart.splice(cart.indexOf(item), 1);
+            }
+            break;
+        case "remove":
+            cart.splice(cart.indexOf(item), 1);
+            break;
+    }
+
+    renderCart();
+});
+window.noireCart = cart;
+window.renderNoireCart = renderCart;
+renderCart();
+
 
 function showToast(message) {
     toast.textContent = message;
@@ -202,30 +209,146 @@ filterBar.addEventListener("click", event => {
     renderProducts();
 });
 
+
 productGrid.addEventListener("click", event => {
     const button = event.target.closest("[data-add]");
-
     if (!button) return;
 
-    const product = products.find(item => item.id === Number(button.dataset.add));
-
+    const product = products.find(
+        item => item.id === Number(button.dataset.add)
+    );
     if (!product) return;
 
-    cart.push(product);
-    cartCount.textContent = cart.length;
+    const existingItem = cart.find(
+        item => item.product.id === product.id
+    );
+
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({ product, quantity: 1 });
+    }
+
+    renderCart();
     showToast(`${product.name} added to your bag.`);
 });
 
+
+
 cartButton.addEventListener("click", () => {
+    cartPanel.classList.add("open");
+    cartPanel.setAttribute("aria-hidden", "false");
+});
+
+document.getElementById("closeCart").addEventListener("click", () => {
+    cartPanel.classList.remove("open");
+    cartPanel.setAttribute("aria-hidden", "true");
+});
+
+document.getElementById("continueShopping").addEventListener("click", () => {
+    cartPanel.classList.remove("open");
+    cartPanel.setAttribute("aria-hidden", "true");
+});
+
+
+const checkoutButton = document.getElementById("checkoutButton");
+
+checkoutButton.addEventListener("click", () => {
     if (cart.length === 0) {
-        showToast("Your bag is empty. Discover something you love.");
+        showToast("Your bag is empty.");
         return;
     }
 
-    const total = cart.reduce((sum, product) => sum + product.price, 0);
+    let checkoutOverlay = document.getElementById("checkoutOverlay");
 
-    showToast(`${cart.length} item(s) in your bag · Total: ${money.format(total)}`);
+    if (!checkoutOverlay) {
+        checkoutOverlay = document.createElement("div");
+        checkoutOverlay.id = "checkoutOverlay";
+        checkoutOverlay.className = "checkout-overlay";
+
+        checkoutOverlay.innerHTML = `
+            <div class="checkout-dialog" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+                <div class="checkout-header">
+                    <div>
+                        <p class="eyebrow">NOIRÉ PRIVATE CLIENT</p>
+                        <h2 id="checkoutTitle">Complete Your Order</h2>
+                    </div>
+                    <button type="button" id="closeCheckout" aria-label="Close checkout">×</button>
+                </div>
+
+                <h3 class="checkout-section-title">ORDER SUMMARY</h3>
+                <div id="checkoutSummary"></div>
+
+                <form id="checkoutForm">
+                    <label>
+                        Full name
+                        <input type="text" name="customerName" required placeholder="Enter your full name">
+                    </label>
+
+                    <label>
+                        Phone number
+                        <input type="tel" name="phone" required placeholder="Enter your phone number">
+                    </label>
+
+                    <label>
+                        Delivery address
+                        <textarea name="address" required rows="3" placeholder="Enter your delivery address"></textarea>
+                    </label>
+
+                    <button type="submit" id="confirmDemoOrder">CONFIRM ORDER →</button>
+                    <p class="checkout-note">Demo checkout only. No payment will be collected, and your details will not be sent anywhere.</p>
+                </form>
+            </div>
+        `;
+
+        document.body.appendChild(checkoutOverlay);
+
+        checkoutOverlay.querySelector("#closeCheckout").addEventListener("click", () => {
+            checkoutOverlay.classList.remove("open");
+        });
+
+        checkoutOverlay.addEventListener("click", event => {
+            if (event.target === checkoutOverlay) {
+                checkoutOverlay.classList.remove("open");
+            }
+        });
+
+        checkoutOverlay.querySelector("#checkoutForm").addEventListener("submit", event => {
+            event.preventDefault();
+
+            checkoutOverlay.classList.remove("open");
+            showToast("Demo order complete. No payment was made.");
+        });
+    }
+
+    const checkoutSummary = checkoutOverlay.querySelector("#checkoutSummary");
+
+    checkoutSummary.innerHTML = cart.map(item => `
+        <div class="checkout-summary-item">
+            <div>
+                <strong>${item.product.name}</strong>
+                <p>Quantity: ${item.quantity}</p>
+            </div>
+            <strong>${money.format(item.product.price * item.quantity)}</strong>
+        </div>
+    `).join("");
+
+    const total = cart.reduce(
+        (sum, item) => sum + item.product.price * item.quantity,
+        0
+    );
+
+    checkoutSummary.innerHTML += `
+        <div class="checkout-summary-total">
+            <span>Total</span>
+            <strong>${money.format(total)}</strong>
+        </div>
+    `;
+
+    checkoutOverlay.classList.add("open");
 });
+
+
 
 menuButton.addEventListener("click", () => {
     const isOpen = navLinks.classList.toggle("open");
