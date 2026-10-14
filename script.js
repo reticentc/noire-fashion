@@ -108,7 +108,8 @@ const products = [
         model: "oxford-1.glb",
         price: 115000,
         tag: "Timeless",
-        image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=700&q=80"
+        image: "assets/oxford-shoes.jpg"
+
     }
 ];
 
@@ -134,7 +135,22 @@ function renderProducts() {
         activeFilter === "all" || product.category === activeFilter
     );
 
-    productGrid.innerHTML = visibleProducts.map(product => `
+    
+const categoryOrder = {
+    sneakers: 1,
+    heels: 1,
+    oxford: 1,
+    watches: 2,
+    clothing: 3,
+    handbags: 4
+};
+
+const orderedProducts = [...visibleProducts].sort(
+    (a, b) => categoryOrder[a.category] - categoryOrder[b.category]
+);
+
+productGrid.innerHTML = orderedProducts.map(product => `
+
         <article class="product-card" ${product.model ? `data-model="${product.model}"` : ""}>
             <div class="product-image">
                 <img
