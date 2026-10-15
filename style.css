@@ -1567,3 +1567,375 @@ body,
         transform: none;
     }
 }
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Explore More Collections button */
+.explore-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 42px;
+}
+
+.explore-more-wrap .primary-button {
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.explore-more-wrap .primary-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   NOIRÉ — ALL COLLECTIONS PAGE
+======================================== */
+
+.all-collections-hero {
+    padding: 100px 9% 75px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at top, rgba(190, 158, 103, 0.10), transparent 65%);
+}
+
+.all-collections-hero h1 {
+    margin: 18px 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(42px, 6vw, 76px);
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+.all-collections-hero h1 em {
+    color: var(--accent);
+}
+
+.all-collections-hero > p:last-child {
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.all-collections-content {
+    padding-top: 30px;
+}
+
+.collection-tools {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 35px 0;
+    padding: 24px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.collection-search,
+.collection-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+}
+
+.collection-tools label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+}
+
+.collection-tools input,
+.collection-tools select {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+}
+
+.collection-tools input:focus,
+.collection-tools select:focus {
+    outline: 1px solid var(--accent);
+    outline-offset: 1px;
+}
+
+.clear-filters {
+    align-self: end;
+    min-height: 46px;
+    padding: 12px 16px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+}
+
+.clear-filters:hover {
+    background: var(--accent);
+    color: #111;
+}
+
+.all-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px 20px;
+}
+
+.collection-product-card {
+    min-width: 0;
+    animation: collectionFadeIn 0.35s ease both;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.collection-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.16);
+}
+
+.collection-product-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: var(--surface);
+}
+
+.collection-product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+}
+
+.collection-product-card:hover .collection-product-image img {
+    transform: scale(1.05);
+}
+
+.collection-product-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 7px 10px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+.collection-product-info {
+    padding: 15px 2px;
+}
+
+.collection-product-category {
+    margin: 0 0 7px;
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.collection-product-info h3 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.collection-product-price {
+    margin: 10px 0 0;
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.collection-empty {
+    grid-column: 1 / -1;
+    padding: 65px 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.collection-empty h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.collection-empty p {
+    color: var(--muted);
+}
+
+@keyframes collectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1000px) {
+    .all-products-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .collection-tools {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .all-collections-hero {
+        padding: 70px 6% 50px;
+    }
+
+    .all-products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 12px;
+    }
+
+    .collection-tools {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+
+    .collection-product-info h3 {
+        font-size: 16px;
+    }
+
+    .collection-product-tag {
+        top: 7px;
+        left: 7px;
+        font-size: 9px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .collection-product-card,
+    .collection-product-image img,
+    .clear-filters {
+        animation: none;
+        transition: none;
+    }
+
+    .collection-product-card:hover,
+    .collection-product-card:hover .collection-product-image img {
+        transform: none;
+    }
+}
+
+/* =========================================
+   NOIRÉ — PRODUCT PAGE THEME FIX
+========================================= */
+
+/* Smooth theme transitions */
+body,
+.product-page,
+.product-information,
+.product-breadcrumb,
+.product-image-panel,
+.product-detail-price,
+.product-description,
+.product-message,
+.product-back-link {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Product page text */
+.product-page {
+    color: var(--text);
+}
+
+.product-breadcrumb {
+    color: var(--muted);
+}
+
+.product-breadcrumb a {
+    color: var(--accent);
+}
+
+.product-information h1 {
+    color: var(--text);
+}
+
+.product-detail-price {
+    color: var(--accent);
+}
+
+.product-description,
+.product-message {
+    color: var(--muted);
+}
+
+.product-back-link {
+    color: var(--text);
+}
+
+.product-back-link:hover {
+    color: var(--accent);
+}
+
+/* Product viewer — keep the luxury dark display */
+.product-image-panel {
+    background: radial-gradient(
+        ellipse,
+        #343027 0%,
+        #191817 55%,
+        #101010 100%
+    );
+    border-color: #39352d;
+}
+
+/* Product theme toggle */
+.theme-toggle {
+    background: var(--surface);
+    color: var(--accent);
+    border-color: var(--border);
+}
+
+/* Light mode — page changes, 3D stage stays dark */
+html[data-theme="light"] body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+html[data-theme="light"] .navbar {
+    background: var(--bg);
+    border-color: var(--border);
+}
+
+html[data-theme="light"] .product-breadcrumb {
+    color: var(--muted);
+}
+
+html[data-theme="light"] .product-information h1 {
+    color: var(--text);
+}
+
+html[data-theme="light"] .product-description,
+html[data-theme="light"] .product-message {
+    color: var(--muted);
+}
+
+/* Dark mode */
+html[data-theme="dark"] body {
+    background: var(--bg);
+    color: var(--text);
+}

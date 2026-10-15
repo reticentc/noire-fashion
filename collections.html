@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore every collection at NOIRÉ. Discover sneakers, watches, handbags and clothing.">
+    <title>All Collections — NOIRÉ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="products.js" defer></script>
+    <script src="collections.js" defer></script>
+</head>
+<body class="all-collections-page">
+
+    <div class="announcement">
+        DISCOVER YOUR NEXT STATEMENT PIECE
+    </div>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">NOIRÉ<span>.</span></a>
+
+        <button type="button" id="menuButton" class="menu-toggle"
+                aria-label="Toggle navigation" aria-expanded="false">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="collections.html" aria-current="page">Collections</a>
+            <a href="index.html#about">Our Story</a>
+
+            <button type="button" id="themeToggle" class="theme-toggle"
+                    aria-label="Switch theme" title="Switch theme">
+                <span id="themeIcon" aria-hidden="true">☀</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="all-collections-hero">
+            <p class="eyebrow">THE COMPLETE NOIRÉ EDIT</p>
+            <h1>Every piece.<br><em>Your signature.</em></h1>
+            <p>
+                Explore the complete collection of distinctive styles,
+                timeless accessories and everyday luxury.
+            </p>
+        </section>
+
+        <section class="all-collections-content section-padding">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">FIND YOUR NEXT FAVOURITE</p>
+                    <h2>Explore <em>everything.</em></h2>
+                </div>
+                <p id="resultsCount" aria-live="polite">Loading collection...</p>
+            </div>
+
+            <div class="collection-tools">
+                <div class="collection-search">
+                    <label for="productSearch">SEARCH PRODUCTS</label>
+                    <input
+                        type="search"
+                        id="productSearch"
+                        placeholder="Search watches, bags, sneakers..."
+                    >
+                </div>
+
+                <div class="collection-filter">
+                    <label for="categoryFilter">CATEGORY</label>
+                    <select id="categoryFilter">
+                        <option value="all">All categories</option>
+                        <option value="sneakers">Sneakers</option>
+                        <option value="watches">Wristwatches</option>
+                        <option value="handbags">Handbags</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="heels">Heels</option>
+                        <option value="oxford">Formal shoes</option>
+                    </select>
+                </div>
+
+                <div class="collection-filter">
+                    <label for="minPrice">MINIMUM PRICE (₦)</label>
+                    <input type="number" id="minPrice" min="0"
+                           placeholder="0" step="1000">
+                </div>
+
+                <div class="collection-filter">
+                    <label for="maxPrice">MAXIMUM PRICE (₦)</label>
+                    <input type="number" id="maxPrice" min="0"
+                           placeholder="No limit" step="1000">
+                </div>
+
+                <div class="collection-filter">
+                    <label for="sortProducts">SORT BY</label>
+                    <select id="sortProducts">
+                        <option value="featured">Default order</option>
+                        <option value="name-asc">Name: A to Z</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                    </select>
+                </div>
+
+                <button type="button" id="clearFilters" class="clear-filters">
+                    CLEAR FILTERS ↺
+                </button>
+            </div>
+
+            <div class="all-products-grid" id="allProductsGrid">
+                <p class="loading-message">Curating your collection...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="index.html" class="logo">NOIRÉ<span>.</span></a>
+        <p>Distinctive style. Your signature.</p>
+        <span>© 2026 NOIRÉ. Student project.</span>
+    </footer>
+
+</body>
+</html>

@@ -274,33 +274,34 @@ if (product) {
             "Please return to our collection and select a product.";
         document.getElementById("detailImage").hidden = true;
     }
-    
-/* NOIRÉ light/dark mode toggle */
-const themeToggle = document.getElementById("themeToggle");
-const themeIcon = document.getElementById("themeIcon");
 
-function applyProductTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
+/* NOIRÉ shared light/dark theme */
+(function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
 
-    if (themeIcon) {
-        themeIcon.textContent = theme === "dark" ? "☀" : "☾";
+    function applyProductTheme(theme) {
+        const selectedTheme = theme === "light" ? "light" : "dark";
+
+        document.documentElement.setAttribute("data-theme", selectedTheme);
+
+        if (themeIcon) {
+            themeIcon.textContent = selectedTheme === "dark" ? "☀" : "☾";
+        }
+
+        if (themeToggle) {
+            themeToggle.setAttribute(
+                "aria-label",
+                selectedTheme === "dark"
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+            );
+        }
     }
 
-    if (themeToggle) {
-        themeToggle.setAttribute(
-            "aria-label",
-            theme === "dark"
-                ? "Switch to light mode"
-                : "Switch to dark mode"
-        );
-    }
-}
+    applyProductTheme(localStorage.getItem("noire-theme") || "dark");
 
-const savedProductTheme = localStorage.getItem("noire-theme") || "dark";
-applyProductTheme(savedProductTheme);
-
-if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
+    themeToggle?.addEventListener("click", function () {
         const currentTheme =
             document.documentElement.getAttribute("data-theme") || "dark";
 
@@ -309,7 +310,8 @@ if (themeToggle) {
         localStorage.setItem("noire-theme", newTheme);
         applyProductTheme(newTheme);
     });
-}
+})();
+
 
 </script>
 </body>
