@@ -21,6 +21,10 @@ Build a Simple Webpage with AI, Git & GitHub.
 - Product images and categories
 - Animated visual elements
 - Responsive layout for different screen sizes
+- **Interactive 3D Product Viewer:** Explore selected watches using interactive 3D models.
+- **Light and Dark Mode:** Switch between light and dark themes using a sun/moon toggle.
+- **Saved Theme Preference:** The selected theme is remembered when navigating between the homepage and product detail pages.
+- **Responsive Product Details:** View product images, descriptions, prices in Nigerian Naira (₦), and interactive models where available.
 
 ## AI Tool Used
 ChatGPT.
