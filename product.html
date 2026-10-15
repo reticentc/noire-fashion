@@ -8,7 +8,7 @@
     <title>Product Details | NOIRÉ</title>
 
     <link rel="stylesheet" href="style.css">
-
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <style>
         .product-page {
             max-width: 1200px;
@@ -29,25 +29,67 @@
             align-items: start;
         }
 
-        .product-image-panel {
-            background: #eeeae2;
-            min-height: 480px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+       
+/* NOIRÉ premium product detail viewer */
+.product-image-panel {
+    position: relative;
+    min-width: 0;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 
-        .product-image-panel img {
-            width: 100%;
-            height: 480px;
-            object-fit: contain;
-            padding: 24px;
-        }
+    background: radial-gradient(
+        ellipse,
+        #343027 0%,
+        #191817 55%,
+        #101010 100%
+    );
 
-        .product-information {
-            padding-top: 20px;
-        }
+    border: 1px solid #39352d;
+    border-radius: 18px;
+}
+
+#detailModel {
+    display: block;
+    width: 100%;
+    height: 480px;
+
+    background: transparent;
+    --poster-color: transparent;
+
+    --progress-bar-color: #c8a96b;
+    --progress-bar-height: 3px;
+}
+
+#detailImage {
+    width: 100%;
+    height: 480px;
+    padding: 24px;
+    object-fit: contain;
+}
+
+#detailImage[hidden],
+#detailModel[hidden] {
+    display: none;
+}
+
+@media (max-width: 760px) {
+    .product-image-panel {
+        min-height: 340px;
+    }
+
+    #detailModel,
+    #detailImage {
+        height: 340px;
+    }
+}
+
+
+#detailImage[hidden] {
+    display: none;
+}
 
         .product-eyebrow {
             font-size: 11px;
@@ -125,15 +167,26 @@
         </p>
 
         <section class="product-layout">
-            <div class="product-image-panel">
-                
-<img
-    id="detailImage"
-    src=""
-    alt="NOIRÉ fashion product"
->
+            
+<div class="product-image-panel">
+    <img
+        id="detailImage"
+        src=""
+        alt="NOIRÉ fashion product"
+    >
 
-            </div>
+    <model-viewer
+        id="detailModel"
+        src=""
+        alt="Interactive 3D model of the selected NOIRÉ product"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1.5"
+        environment-image="legacy"
+        exposure="0.75"        hidden
+    ></model-viewer>
+</div>
+
 
             <div class="product-information">
                 <p class="product-eyebrow">NOIRÉ COLLECTION</p>
@@ -174,9 +227,29 @@ const products = window.noireProducts || [];
         maximumFractionDigits: 0
     });
 
-    if (product) {
-        document.getElementById("detailImage").src = product.image;
-        document.getElementById("detailImage").alt = product.name;
+   
+if (product) {
+    const detailImage = document.getElementById("detailImage");
+    const detailModel = document.getElementById("detailModel");
+
+    detailImage.alt = product.name;
+
+    if (product.model) {
+        const modelPath = product.model.startsWith("assets/")
+            ? product.model
+            : `assets/models/${product.model}`;
+
+        detailModel.src = modelPath;
+        detailModel.alt = `Interactive 3D view of ${product.name}`;
+        detailModel.hidden = false;
+        detailImage.hidden = true;
+    } else {
+        detailImage.src = product.image;
+        detailImage.hidden = false;
+        detailModel.hidden = true;
+        detailModel.removeAttribute("src");
+    }
+
         document.getElementById("detailName").textContent = product.name;
         document.getElementById("detailPrice").textContent =
             money.format(product.price);

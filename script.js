@@ -57,6 +57,8 @@ function renderProducts() {
     );
 
     
+
+
 const categoryOrder = {
     sneakers: 1,
     heels: 1,
@@ -66,9 +68,44 @@ const categoryOrder = {
     handbags: 4
 };
 
-const orderedProducts = [...visibleProducts].sort(
-    (a, b) => categoryOrder[a.category] - categoryOrder[b.category]
-);
+const orderedProducts = [...visibleProducts].sort((a, b) => {
+    const categoryDifference =
+        (categoryOrder[a.category] ?? 999) -
+        (categoryOrder[b.category] ?? 999);
+
+    if (categoryDifference !== 0) {
+        return categoryDifference;
+    }
+
+    // Clothing: suits first, then 3D hoodies, then JPG hoodies
+    if (a.category === "clothing" && b.category === "clothing") {
+        const clothingOrder = product => {
+            if (product.model?.startsWith("suit-")) return 1;
+            if (product.model?.startsWith("hoodie-")) return 2;
+            return 3;
+        };
+
+        return clothingOrder(a) - clothingOrder(b) || a.id - b.id;
+    }
+
+    // Handbags: 3D models before JPG images
+    if (a.category === "handbags" && b.category === "handbags") {
+        const aIs3D = a.model?.endsWith(".glb") ? 0 : 1;
+        const bIs3D = b.model?.endsWith(".glb") ? 0 : 1;
+
+        return aIs3D - bIs3D || a.id - b.id;
+    }
+
+// Watches: show 3D models before JPG-only products
+if (a.category === "watches" && b.category === "watches") {
+    const aIs3D = a.model?.endsWith(".glb") ? 0 : 1;
+    const bIs3D = b.model?.endsWith(".glb") ? 0 : 1;
+
+    return aIs3D - bIs3D || a.id - b.id;
+}
+
+return a.id - b.id;
+});
 
 
 productGrid.innerHTML = orderedProducts.map(product => `
@@ -95,7 +132,7 @@ productGrid.innerHTML = orderedProducts.map(product => `
                 class="add-button"
                 data-add="${product.id}"
                 aria-label="Add ${product.name} to bag"
-            >+</button>
+                     >+</button>
         </div>
 
         <div class="product-details">

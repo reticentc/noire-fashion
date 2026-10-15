@@ -3,17 +3,18 @@ window.noireProducts = [
         id: 1,
         name: "Midnight Runner",
         category: "sneakers",
+        model: "sneaker-1.glb",
         price: 85000,
         tag: "Bestseller",
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
-    },
+        image: "assets/thumbnails/sneaker-1.png",    },
     {
         id: 2,
         name: "Urban Classic",
         category: "sneakers",
+        model: "sneaker-2.glb",
         price: 72000,
         tag: "New",
-        image: "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=700&q=80"
+        image: "assets/thumbnails/sneaker-2.png"
     },
     {
         id: 3,
@@ -21,7 +22,7 @@ window.noireProducts = [
         category: "watches",
         price: 125000,
         tag: "Editor's pick",
-        image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80"
+        image: "assets/models/watches-1.jpg"
     },
     {
         id: 4,
@@ -29,7 +30,7 @@ window.noireProducts = [
         category: "watches",
         price: 98000,
         tag: "Essential",
-        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80"
+        image: "assets/models/watches-2.jpg"
     },
     {
         id: 5,
@@ -37,7 +38,7 @@ window.noireProducts = [
         category: "handbags",
         price: 110000,
         tag: "New",
-        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80"
+        image: "assets/models/bags-1.jpg"
     },
     {
         id: 6,
@@ -45,25 +46,8 @@ window.noireProducts = [
         category: "handbags",
         price: 145000,
         tag: "Limited edit",
-        image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=80"
+        image: "assets/models/bags-2.jpg"
     },
-    {
-        id: 7,
-        name: "Essential Overshirt",
-        category: "clothing",
-        price: 45000,
-        tag: "Essential",
-        image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 8,
-        name: "Everyday Luxe",
-        category: "clothing",
-        price: 38000,
-        tag: "New",
-        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
-    }
-        ,
     {
         id: 9,
         name: "Street Edition",
@@ -71,7 +55,7 @@ window.noireProducts = [
         model: "sneaker-3.glb",
         price: 92000,
         tag: "New",
-        image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80"
+        image: "assets/thumbnails/sneaker-3.png"
     },
     {
         id: 10,
@@ -80,7 +64,7 @@ window.noireProducts = [
         model: "sneaker-4.glb",
         price: 105000,
         tag: "Featured",
-        image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=700&q=80"
+        image: "assets/thumbnails/sneaker-4.png"
     },
     {
         id: 11,
@@ -89,7 +73,7 @@ window.noireProducts = [
         model: "heels-1.glb",
         price: 78000,
         tag: "Elegant",
-        image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=700&q=80"
+        image: "assets/thumbnails/heels-1.png"
     },
     {
         id: 12,
@@ -98,7 +82,7 @@ window.noireProducts = [
         model: "heels-2.glb",
         price: 95000,
         tag: "Limited edit",
-       image: "https://commons.wikimedia.org/wiki/Special:FilePath/High_heel_shoe.jpg?width=700"
+       image: "assets/thumbnails/heels-2.png"
     },
     {
         id: 13,
@@ -107,39 +91,43 @@ window.noireProducts = [
         model: "oxford-1.glb",
         price: 115000,
         tag: "Timeless",
-        image: "assets/oxford-shoes.jpg"
+        image: "assets/thumbnails/oxford-1.png"
     },
     {
         id: 14,
         name: "Midnight Watch",
         category: "watches",
+        model: "watch-1.glb",
         price: 135000,
         tag: "New",
-        image: "assets/models/watches-1.jpg"
+        image: "assets/thumbnails/watch-1.png"
     },
     {
         id: 15,
         name: "Silver Classic",
         category: "watches",
+        model: "watch-2.glb",
         price: 110000,
         tag: "Essential",
-        image: "assets/models/watches-2.jpg"
+        image: "assets/thumbnails/watch-2.png"
     },
     {
         id: 16,
         name: "Golden Hour",
         category: "watches",
+        model: "watch-3.glb",
         price: 145000,
         tag: "Featured",
-        image: "assets/models/watches-3.jpg"
+        image: "assets/thumbnails/watch-3.png"
     },
     {
         id: 17,
         name: "Executive Time",
         category: "watches",
+        model: "watch-4.glb",
         price: 125000,
         tag: "Editor's pick",
-        image: "assets/models/watches-4.jpg"
+        image: "assets/thumbnails/watch-4.png"
     },
     {
         id: 18,
@@ -181,85 +169,110 @@ window.noireProducts = [
         tag: "Essential",
         image: "assets/models/watches-9.jpg"
     },
-    {
-        id: 23,
-        name: "The Noir Bag",
-        category: "handbags",
-        price: 120000,
-        tag: "New",
-        image: "assets/models/bags-1.jpg"
-    },
-    {
-        id: 24,
-        name: "City Tote",
-        category: "handbags",
-        price: 95000,
-        tag: "Essential",
-        image: "assets/models/bags-2.jpg"
-    },
-    {
-        id: 25,
-        name: "Evening Carry",
-        category: "handbags",
-        price: 150000,
-        tag: "Featured",
-        image: "assets/models/bags-3.jpg"
-    },
-    {
-        id: 26,
-        name: "Classic Shoulder Bag",
-        category: "handbags",
-        price: 115000,
-        tag: "Timeless",
-        image: "assets/models/bags-4.jpg"
-    },
-    {
-        id: 27,
-        name: "The Luxe Carryall",
-        category: "handbags",
-        price: 165000,
-        tag: "Premium",
-        image: "assets/models/bags-5.jpg"
-    },
-    {
-        id: 28,
-        name: "Everyday Handbag",
-        category: "handbags",
-        price: 105000,
-        tag: "Essential",
-        image: "assets/models/bags-6.jpg"
-    },
-    {
-        id: 29,
-        name: "Statement Bag",
-        category: "handbags",
-        price: 145000,
-        tag: "Limited edit",
-        image: "assets/models/bags-7.jpg"
-    },
+    
+{
+    id: 23,
+    name: "The Noir Bag",
+    category: "handbags",
+    model: "handbag-1.glb",
+    price: 120000,
+    tag: "New",
+    image: "assets/thumbnails/handbag-1.png"
+},
+{
+    id: 24,
+    name: "City Tote",
+    category: "handbags",
+    model: "handbag-2.glb",
+    price: 95000,
+    tag: "Essential",
+    image: "assets/thumbnails/handbag-2.png"
+},
+{
+    id: 25,
+    name: "Evening Carry",
+    category: "handbags",
+    model: "handbag-3.glb",
+    price: 150000,
+    tag: "Featured",
+    image: "assets/thumbnails/handbag-3.png"
+},
+{
+    id: 26,
+    name: "Classic Shoulder Bag",
+    category: "handbags",
+    model: "handbag-4.glb",
+    price: 115000,
+    tag: "Timeless",
+    image: "assets/thumbnails/handbag-4.png"
+},
+{
+    id: 27,
+    name: "The Luxe Carryall",
+    category: "handbags",
+    price: 165000,
+    tag: "Premium",
+    image: "assets/models/bags-3.jpg"
+},
+{
+    id: 28,
+    name: "Everyday Handbag",
+    category: "handbags",
+    price: 105000,
+    tag: "Essential",
+    image: "assets/models/bags-5.jpg"
+},
+{
+    id: 29,
+    name: "Statement Bag",
+    category: "handbags",
+    price: 145000,
+    tag: "Limited edit",
+    image: "assets/models/bags-6.jpg"
+},
+{
+    id: 44,
+    name: "Modern Classic Bag",
+    category: "handbags",
+    price: 125000,
+    tag: "Essential",
+    image: "assets/models/bags-7.jpg"
+},
+{
+    id: 45,
+    name: "Signature Carryall",
+    category: "handbags",
+    price: 135000,
+    tag: "Featured",
+    image: "assets/models/bags-4.jpg"
+},
+
     {
         id: 30,
         name: "Essential Hoodie",
         category: "clothing",
+        model: "hoodie-1.glb",
         price: 55000,
         tag: "New",
-        image: "assets/models/hoodies-1.jpg"
+        image: "assets/thumbnails/hoodie-1.png"
     },
     {
         id: 31,
         name: "Urban Comfort Hoodie",
         category: "clothing",
+        model: "hoodie-2.glb",
         price: 62000,
         tag: "Featured",
-        image: "assets/models/hoodies-2.jpg"
+        image: "assets/thumbnails/hoodie-2.png"
     },
     {
         id: 32,
         name: "Midnight Hoodie",
         category: "clothing",
+        model: "hoodie-3.glb",
         price: 58000,
         tag: "Essential",
-        image: "assets/models/hoodies-3.jpg"
+        image: "assets/thumbnails/hoodie-3.png"
     },
     {
         id: 33,
@@ -348,6 +361,41 @@ window.noireProducts = [
         price: 90000,
         tag: "Essential",
         image: "assets/models/shoes-7.jpg"
+    },
+    {
+        id: 52,
+        name: "Classic Tailored Suit",
+        category: "clothing",
+        model: "suit-1.glb",
+        price: 180000,
+        tag: "Premium",
+        image: "assets/thumbnails/suit-1.png"
+    },
+    {
+        id: 53,
+        name: "Modern Executive Suit",
+        category: "clothing",
+        model: "suit-2.glb",
+        price: 195000,
+        tag: "Featured",
+        image: "assets/thumbnails/suit-2.png"
+    },
+    {
+        id: 46,
+        name: "Midnight Formal Suit",
+        category: "clothing",
+        model: "suit-3.glb",
+        price: 210000,
+        tag: "Premium",
+        image: "assets/thumbnails/suit-3.png"
+    },
+    {
+        id: 47,
+        name: "Signature Slim Suit",
+        category: "clothing",
+        model: "suit-4.glb",
+        price: 200000,
+        tag: "New",
+        image: "assets/thumbnails/suit-4.png"
     }
-
 ];
