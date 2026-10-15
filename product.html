@@ -117,7 +117,7 @@
         .product-back-link {
             display: inline-block;
             margin-top: 24px;
-            color: inherit;
+            color: var(--text);
             text-decoration: none;
         }
 
@@ -153,13 +153,21 @@
     <header class="navbar">
         <a href="index.html" class="logo">NOIRÉ<span>.</span></a>
 
-        <nav class="nav-links">
-            <a href="index.html#home">Home</a>
-            <a href="index.html#shop">Shop</a>
-            <a href="index.html#categories">Collections</a>
-            <a href="index.html#about">Our Story</a>
-        </nav>
-    </header>
+       
+<nav class="nav-links">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#shop">Shop</a>
+    <a href="index.html#categories">Collections</a>
+    <a href="index.html#about">Our Story</a>
+
+    <button type="button" id="themeToggle" class="theme-toggle"
+            aria-label="Switch to light mode"
+            title="Switch theme">
+        <span id="themeIcon" aria-hidden="true">☀</span>
+    </button>
+</nav>
+</header>
+
 
     <main class="product-page">
         <p class="product-breadcrumb">
@@ -266,6 +274,43 @@ if (product) {
             "Please return to our collection and select a product.";
         document.getElementById("detailImage").hidden = true;
     }
+    
+/* NOIRÉ light/dark mode toggle */
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+function applyProductTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+
+    if (themeIcon) {
+        themeIcon.textContent = theme === "dark" ? "☀" : "☾";
+    }
+
+    if (themeToggle) {
+        themeToggle.setAttribute(
+            "aria-label",
+            theme === "dark"
+                ? "Switch to light mode"
+                : "Switch to dark mode"
+        );
+    }
+}
+
+const savedProductTheme = localStorage.getItem("noire-theme") || "dark";
+applyProductTheme(savedProductTheme);
+
+if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+        const currentTheme =
+            document.documentElement.getAttribute("data-theme") || "dark";
+
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        localStorage.setItem("noire-theme", newTheme);
+        applyProductTheme(newTheme);
+    });
+}
+
 </script>
 </body>
 </html>

@@ -456,3 +456,41 @@ productGrid.addEventListener("click", (event) => {
     block: "start"
   });
 });
+
+/* NOIRÉ light/dark mode toggle */
+(function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+
+        if (themeIcon) {
+            themeIcon.textContent = theme === "dark" ? "☀" : "☾";
+        }
+
+        if (themeToggle) {
+            themeToggle.setAttribute(
+                "aria-label",
+                theme === "dark"
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+            );
+        }
+    }
+
+    const savedTheme = localStorage.getItem("noire-theme") || "dark";
+    applyTheme(savedTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener("click", function () {
+            const currentTheme =
+                document.documentElement.getAttribute("data-theme") || "dark";
+
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+            localStorage.setItem("noire-theme", newTheme);
+            applyTheme(newTheme);
+        });
+    }
+})();

@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIRÉ Thumbnail Generator</title>
+
+    <script type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: Arial, sans-serif;
+            background: #f7f4ee;
+            color: #222;
+        }
+
+        main {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        h1 {
+            letter-spacing: 3px;
+        }
+
+        select, button {
+            padding: 12px;
+            margin: 8px 8px 8px 0;
+            font-size: 15px;
+        }
+
+        model-viewer {
+            display: block;
+            width: 100%;
+            height: 500px;
+            margin-top: 16px;
+            background: #eeeae2;
+            border-radius: 8px;
+            --poster-color: #eeeae2;
+        }
+
+        #status {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+<main>
+    <h1>NOIRÉ</h1>
+    <h2>3D Thumbnail Generator</h2>
+
+    <p>Select a model, wait for it to load, then download its static PNG.</p>
+
+    <label for="modelSelect">Choose a 3D model:</label>
+    <select id="modelSelect"></select>
+
+    <model-viewer
+        id="viewer"
+        camera-controls
+        camera-orbit="45deg 75deg 105%"
+        field-of-view="30deg"
+        shadow-intensity="1"
+        exposure="1"
+        environment-image="neutral"
+        alt="NOIRÉ 3D product preview">
+    </model-viewer>
+
+    <p id="status">Choose a model to begin.</p>
+
+    <button id="downloadButton" disabled>
+        Download PNG Thumbnail
+    </button>
+</main>
+
+<script>
+    const models = [
+        "handbag-1.glb",
+        "handbag-2.glb",
+        "handbag-3.glb",
+        "handbag-4.glb",
+        "heels-1.glb",
+        "heels-2.glb",
+        "hoodie-1.glb",
+        "hoodie-2.glb",
+        "hoodie-3.glb",
+        "oxford-1.glb",
+        "sneaker-1.glb",
+        "sneaker-2.glb",
+        "sneaker-3.glb",
+        "sneaker-4.glb",
+        "suit-1.glb",
+        "suit-2.glb",
+        "suit-3.glb",
+        "suit-4.glb",
+        "watch-1.glb",
+        "watch-2.glb",
+        "watch-3.glb",
+        "watch-4.glb"
+    ];
+
+    const selector = document.getElementById("modelSelect");
+    const viewer = document.getElementById("viewer");
+    const status = document.getElementById("status");
+    const downloadButton = document.getElementById("downloadButton");
+
+    models.forEach(filename => {
+        const option = document.createElement("option");
+        option.value = filename;
+        option.textContent = filename;
+        selector.appendChild(option);
+    });
+
+    function loadSelectedModel() {
+        downloadButton.disabled = true;
+        status.textContent = "Loading model...";
+
+        viewer.src = "assets/models/" + selector.value;
+    }
+
+    viewer.addEventListener("load", () => {
+        status.textContent =
+            "Model loaded. Adjust its angle if needed, then download.";
+        downloadButton.disabled = false;
+    });
+
+    viewer.addEventListener("error", () => {
+        status.textContent =
+            "The model failed to load. Check its filename and path.";
+        downloadButton.disabled = true;
+    });
+
+    selector.addEventListener("change", loadSelectedModel);
+
+    downloadButton.addEventListener("click", async () => {
+        downloadButton.disabled = true;
+        status.textContent = "Preparing your PNG...";
+
+        try {
+            const blob = await viewer.toBlob({
+                mimeType: "image/png",
+                idealAspect: true
+            });
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = selector.value.replace(".glb", ".png");
+            link.click();
+
+            setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+            status.textContent =
+                "Downloaded " + selector.value.replace(".glb", ".png") +
+                ". You can now select the next model.";
+        } catch (error) {
+            status.textContent =
+                "Screenshot failed. Try reloading the model and retrying.";
+            console.error(error);
+        } finally {
+            downloadButton.disabled = false;
+        }
+    });
+
+    loadSelectedModel();
+</script>
+</body>
+</html>

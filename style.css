@@ -11,6 +11,17 @@
     --sans: "DM Sans", Arial, sans-serif;
 }
 
+/* NOIRÉ LIGHT MODE */
+html[data-theme="light"] {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface-light: #eeece5;
+    --text: #22211e;
+    --muted: #77746c;
+    --accent: #b4935e;
+    --border: rgba(34, 33, 30, 0.14);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -1461,4 +1472,33 @@ h2 em {
 .account-nav-button:hover {
     background: #c4a66b;
     color: #171612;
+}
+
+/* Light and dark mode toggle */
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--accent);
+    font-size: 23px;
+    transition: background 0.3s ease, color 0.3s ease,
+                transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+    background: var(--surface-light);
+}
+
+body,
+.navbar,
+.theme-toggle {
+    transition: background-color 0.3s ease, color 0.3s ease,
+                border-color 0.3s ease;
 }
